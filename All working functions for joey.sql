@@ -10,14 +10,11 @@ HAVING COUNT( * ) > 1
 
 --Mysql delete duplicate base on email but keep the longest row-sum-length record
 
-CREATE TABLE tmp AS SELECT member_id FROM customer_Mar09 t WHERE not exists 
+CREATE TABLE tmp AS SELECT id FROM table1 t WHERE not exists 
 (SELECT 1 FROM table tt WHERE tt.email_id_1=t.email_id_1 AND 
-(char_length(tt.first_name) + char_length(tt.last_name) + char_length(tt.organisation) + 
-char_length(tt.job_title) + char_length(tt.address_line_1) + char_length(tt.postcode) + 
-char_length(tt.mobile_phone) + char_length(tt.preferred_number))> (char_length(t.first_name) + 
-char_length(t.last_name) + char_length(t.organisation) + char_length(t.job_title) + 
-char_length(t.address_line_1) + char_length(t.postcode) + char_length(t.mobile_phone) + 
-char_length(t.preferred_number))); DELETE FROM table WHERE member_id not IN (SELECT member_id FROM tmp); DROP TABLE tmp;
+(char_length(tt.column1) + char_length(tt.column2))> (char_length(t.column1) + char_length(t.column2)));
+ DELETE FROM table WHERE id not IN (SELECT id FROM tmp); 
+ DROP TABLE tmp;
 
 
 
